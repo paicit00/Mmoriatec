@@ -1,0 +1,165 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Tahoma, sans-serif;
+  background: url(l.jpg);
+  color: #333;
+}
+
+a {
+  color: #336699;
+  text-decoration: none;
+}
+
+
+
+.topbar {
+  background: url(i.jpg);
+  border-bottom: 2px solid #cfd8e4;
+  padding: 10px;
+}
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.navbar a {
+  padding: 5px 10px;
+  background: #f4f7fa;
+  border: 1px solid #d1d9e4;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.left-column, .right-column {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Profile section */
+.profile-section, .blurbs, .user-info, .mood, .contact {
+  background: #fff9fa;
+  border: 1px solid #ccd7e5;
+  border-radius: 6px;
+  padding: 15px;
+  box-shadow: 2px 2px 6px rgba(180, 200, 220, 0.3);
+}
+
+.profile-section img, .contact img {
+  width: 100%;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+/* Header */
+.header-box {
+  background:url(lol.jpg);
+  border: 1px solid #b6cfe1;
+  padding: 15px;
+  text-align: center;
+  border-radius: 6px;
+}
+
+.header-box h1 {
+  font-family: 'Georgia', serif;
+  font-size: 1.8rem;
+  color: #000000;
+  text-shadow: 1px 1px #fff;
+}
+
+.edit-links {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* User Info */
+.user-info {
+  text-align: center;
+}
+
+.user-avatar {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #d0e0f0;
+  margin-bottom: 10px;
+}
+
+/* Blurbs */
+.about-me h5 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.gallery {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.gallery img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Contact */
+.contact h4 {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+.actions button {
+  padding: 8px;
+  border: none;
+  background: #d0e6f2;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background: #b9d4e6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .gallery {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

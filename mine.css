@@ -1,0 +1,144 @@
+/* Estilos Generales */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0; /* Gris claro de fondo */
+  color: #333;
+  line-height: 1.6;
+}
+
+.contenedor-principal {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  max-width: 900px;
+  margin: 20px auto;
+  background-color: #fff; /* Blanco del contenedor principal */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos de la Barra Lateral */
+.lateral {
+  background-color: #e6e6e6; /* Gris más claro para la barra lateral */
+  padding: 20px;
+}
+
+.foto-perfil img {
+  width: 100%;
+  max-width: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.seccion-contacto h2, .seccion-informacion h2 {
+  color: #0056b3; /* Azul oscuro para los títulos de la barra lateral */
+  margin-bottom: 10px;
+  border-bottom: 2px solid #0056b3;
+  padding-bottom: 5px;
+}
+
+.item-contacto {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.icono {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.seccion-informacion ul {
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+/* Estilos de la Sección Principal */
+.principal {
+  padding: 20px;
+}
+
+.encabezado h1 {
+  font-size: 2.5em;
+  color: #0056b3; /* Azul oscuro para el nombre */
+  margin-bottom: 5px;
+}
+
+.encabezado h2 {
+  font-size: 1.5em;
+  color: #666; /* Gris para el título profesional */
+  margin-bottom: 20px;
+}
+
+.seccion-perfil h2, .seccion-experiencia h2, .seccion-formacion h2, .seccion-herramientas h2, .seccion-idiomas h2 {
+  color: #0056b3; /* Azul oscuro para los títulos de sección */
+  margin-bottom: 10px;
+  border-bottom: 2px solid #0056b3;
+  padding-bottom: 5px;
+}
+
+.item-experiencia {
+  margin-bottom: 15px;
+}
+
+.item-experiencia h3 {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.barra-herramientas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.barra-progreso {
+  background-color: #ddd; /* Gris claro para la barra de fondo */
+  width: 60%;
+  height: 10px;
+  border-radius: 5px;
+}
+
+.progreso {
+  background-color: #0056b3; /* Azul oscuro para la barra de progreso */
+  height: 100%;
+  border-radius: 5px;
+}
+
+.alto {
+  width: 90%;
+}
+
+.medio {
+  width: 60%;
+}
+
+.bajo {
+  width: 30%;
+}
+
+.nivel-idioma {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 600px) {
+  .contenedor-principal {
+    grid-template-columns: 1fr;
+  }
+
+  .lateral {
+    order: 2; /* Mueve la barra lateral abajo en pantallas pequeñas */
+  }
+
+  .principal {
+    order: 1;
+  }
+}

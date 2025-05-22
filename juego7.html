@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>🖱️ Haz clic en los Números</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive;
+            background:url(lol.jpg) ;
+      filter: brightness(0.9);
+      text-align: center;
+      color: #000000;
+    }
+    #juego {background-color: #e2ffd1;
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      overflow: hidden;
+      border: 4px dashed #ffa7d1;
+      border-radius: 12px;
+    }
+    .numero {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background-color: #27435c;
+      color: #000000;
+      font-size: 30px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 6px #ffb6c1;
+    }
+    .btn {
+      background: #ffccdd;
+      border: 2px solid #ffa7d1;
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      color: #ff1493;
+      margin: 10px;
+      cursor: pointer;
+    }
+    #contador, #vidas, #mensajeFinal {
+      font-size: 24px;
+      margin: 10px;
+    }
+    #mensajeFinal {
+      font-size: 30px;
+      color: #f44336;
+    }
+  </style>
+</head>
+<body>
+  <h1>🖱️ Haz clic en los Números</h1>
+  <div id="contador">Puntos: 0</div>
+  <div id="vidas">Vidas: ❤️❤️❤️❤️❤️</div>
+  <div id="mensajeFinal"></div>
+  <button class="btn" onclick="reiniciarJuego()">🔁 Reiniciar</button>
+  <button class="btn" onclick="toggleMusic()">🎵 Música</button>
+  <div id="juego"></div>
+
+  <!-- Música y sonidos -->
+  <audio id="musica" autoplay loop>
+   <audio id="bien" src="Cantando los Números - Canciones y Clásicos Infantiles (1).mp4" preload="auto"></audio>
+  <audio id="mal" src="https://cdn.pixabay.com/download/audio/2022/03/02/audio_7fa75df7c0.mp3" preload="auto"></audio>
+
+  </audio>
+  
+  <script>
+    const juego = document.getElementById("juego");
+    const contador = document.getElementById("contador");
+    const vidasDiv = document.getElementById("vidas");
+    const mensajeFinal = document.getElementById("mensajeFinal");
+    const musica = document.getElementById("musica");
+    const bien = document.getElementById("bien");
+    const mal = document.getElementById("mal");
+
+    let puntos = 0;
+    let vidas = 5;
+    let jugando = true;
+    let intervalo;
+
+    function crearNumero() {
+      if (!jugando) return;
+      const div = document.createElement("div");
+      div.className = "numero";
+      div.textContent = Math.floor(Math.random() * 10);
+
+      div.style.left = Math.random() * (window.innerWidth - 70) + "px";
+      div.style.top = Math.random() * (juego.clientHeight - 70) + "px";
+
+      juego.appendChild(div);
+
+      const timeout = setTimeout(() => {
+        if (juego.contains(div)) {
+          juego.removeChild(div);
+          vidas--;
+          mal.play();
+          actualizarVidas();
+        }
+      }, 3000);
+
+      div.onclick = () => {
+        if (!jugando) return;
+        clearTimeout(timeout);
+        bien.play();
+        puntos++;
+        juego.removeChild(div);
+        contador.textContent = `Puntos: ${puntos}`;
+        if (puntos >= 5) {
+          terminar("🎉 ¡Ganaste!");
+        }
+      };
+    }
+
+    function actualizarVidas() {
+      vidasDiv.textContent = `Vidas: ${'❤️'.repeat(vidas)}`;
+      if (vidas <= 0) terminar("😢 ¡Perdiste!");
+    }
+
+    function terminar(mensaje) {
+      jugando = false;
+      mensajeFinal.textContent = mensaje;
+      clearInterval(intervalo);
+    }
+
+    function reiniciarJuego() {
+      puntos = 0;
+      vidas = 5;
+      jugando = true;
+      mensajeFinal.textContent = "";
+      contador.textContent = "Puntos: 0";
+      vidasDiv.textContent = "Vidas: ❤️❤️❤️❤️❤️";
+      juego.innerHTML = "";
+      clearInterval(intervalo);
+      intervalo = setInterval(crearNumero, 1500);
+    }
+
+    function toggleMusic() {
+      if (musica.paused) musica.play();
+      else musica.pause();
+    }
+
+    reiniciarJuego();
+  </script>
+</body>
+</html>

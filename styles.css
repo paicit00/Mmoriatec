@@ -1,0 +1,132 @@
+body { 
+  font-family: 'Comic Sans MS', cursive;
+  background: #ffeaf6 url('j.gif') repeat;
+  margin: 0;
+  padding: 0;
+  color: #4b004b;
+}
+/* Navegación */
+.navegacion {
+  background:url(k.jpg);
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  gap: 15px;
+}
+
+.navegacion a {
+  text-decoration: none;
+  color: #000;
+  padding: 8px 15px;
+  background-color: #fff; /* Blanco para los enlaces */
+  border: 2px solid #ff69b4; /* Rosa fuerte borde */
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+.navegacion a:hover {
+  background-color: #ff69b4; /* Rosa fuerte al pasar el ratón */
+  color: #fff;
+}
+.topbar {
+  background: #ffcce5;
+  border-bottom: 3px dotted #ff80c0;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px #fcb8d6;
+}
+
+.topbar h2, .topbar h3 {
+  margin: 5px;
+  color: #b40069;
+}
+
+.main-content {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.titulo {
+  font-size: 2rem;
+  text-align: center;
+  color: #d10084;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px white;
+}
+
+.profiles-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  padding: 0 10px;
+}
+
+.profile-card {
+  background: #fff0fa;
+  border: 4px double #ff99cc;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 4px 4px 12px rgba(255, 170, 200, 0.4);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: scale(1.03);
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.profile-header img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #ff99cc;
+  margin-bottom: 10px;
+  background: white;
+  box-shadow: 0 2px 6px #ffaacc;
+}
+
+.profile-card h2 {
+  font-size: 1.3rem;
+  color: #c21875;
+  margin-bottom: 5px;
+}
+
+.profile-card p {
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+.btn {
+  background: #ff99cc;
+  color: white;
+  padding: 10px 20px;
+  border: 2px solid #ff66b3;
+  border-radius: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 2px 2px 6px #ffaacc;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #ff66b3;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .topbar h2, .topbar h3 {
+    font-size: 1rem;
+  }
+  .titulo {
+    font-size: 1.5rem;
+  }
+}

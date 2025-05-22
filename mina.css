@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Comic Sans MS', cursive;
+  background: url(am.jpg);
+  color: #4b3b3b;
+}
+
+
+.topbar {
+ background:url(k.jpg);
+  border-bottom: 4px dotted #f77c35;
+  text-align: center;
+  padding: 1rem;
+  font-size: 2rem;
+  color: #000000;
+  text-shadow: 1px 1px #fff;
+}
+
+/* Menú de navegación */
+.navbar {
+  transition: background 0.3s ease;
+  display: flex;
+  justify-content: center;
+  background:url(lol.jpg);
+  padding: 10px;
+  gap: 15px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #2f4f4f;
+  font-weight: bold;
+  background: #ffe4e4;
+  padding: 8px 12px;
+  border: 2px dashed #74614e;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+   transform: scale(1.02);
+}
+
+.navbar a:hover {
+  background: #ffd6c4;
+   transform: scale(1.02);
+}
+
+/* Contenedor principal */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 2rem;
+}
+
+/* Tarjetas */
+.card {
+  background: #d0ffc2;
+  border: 3px dashed #c1ff18;
+  border-radius: 15px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 2px 2px 10px rgba(255, 192, 203, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  color: #f07c88;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  margin-bottom: 0.8rem;
+  color: #5c4a4a;
+}
+
+.card img {
+  width: 170px;
+  height: 170px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  border: 2px solid #ffad14;
+}
+
+/* Botón */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #adff60;
+  color: #4a3f35;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  border: 1px solid #d4a373;
+}
+
+.btn:hover {
+  background: #b2e3b6;
+  color: #2f4f4f;
+   transform: scale(1.02);
+  
+}
+
+/* Pie de página */
+.footer {
+  background: #edffab;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #74614e;
+  margin-top: 2rem;
+}
+
+/* Adaptable */
+@media (max-width: 480px) {
+  .topbar {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>🌟 Culebrita Numérica 🐍</title>
+  <style>
+    body {
+      background: repeating-linear-gradient(
+        45deg,
+        #ffccdd,
+        #ffccdd 20px,
+        #d0f0ff 20px,
+        #d0f0ff 40px
+      );
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #ff69b4;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin: 20px 0 10px;
+      text-shadow: 2px 2px #fff0f5;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    canvas {
+      background: repeating-linear-gradient(
+        45deg,
+        #ffccdd,
+        #ffccdd 20px,
+        #d0f0ff 20px,
+        #d0f0ff 40px
+      );
+      border: 4px dashed #ffa7d1;
+      border-radius: 16px;
+      display: block;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 20px #ffc0cb;
+    }
+
+    .button-container {
+      margin: 20px;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #ffb6c1, #d0f0ff);
+      border: 2px solid #ffa7d1;
+      border-radius: 12px;
+      padding: 10px 20px;
+      font-size: 1em;
+      color: #ff1493;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      box-shadow: 0 3px 6px #fcb8e2;
+      cursor: pointer;
+      margin: 5px;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #ffe1ec, #e0f7fa);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+  </style>
+</head>
+<body>
+  <h1>🌈 Culebrita de Números 🐍🔢</h1>
+  <h2 id="score">Números atrapados: 0 / 50</h2>
+
+  <div class="button-container">
+    <button class="btn" onclick="resetGame()">🔄 Reiniciar Juego</button>
+    <button class="btn" onclick="toggleMusic()">🎵 Pausar/Reproducir Música</button>
+  </div>
+
+  <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+  <!-- 🎵 Música de fondo -->
+  <audio id="bg-music" autoplay loop>
+    <source src="El número 4  Canciones infantiles  LittleBabyBum.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    const scoreElement = document.getElementById("score");
+    const music = document.getElementById("bg-music");
+
+    const grid = 20;
+    let count = 0;
+    let snake = [{ x: 160, y: 160 }];
+    let dx = grid;
+    let dy = 0;
+    let item = { x: 320, y: 320, number: getRandomInt(0, 10) };
+    let totalItems = 0;
+    const maxItems = 50;
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    function gameLoop() {
+      requestAnimationFrame(gameLoop);
+      if (++count < 12) return;
+
+      count = 0;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      snake.unshift({ x: snake[0].x + dx, y: snake[0].y + dy });
+
+      if (snake[0].x === item.x && snake[0].y === item.y) {
+        item.x = getRandomInt(0, 20) * grid;
+        item.y = getRandomInt(0, 20) * grid;
+        item.number = getRandomInt(0, 10);
+        totalItems++;
+        scoreElement.textContent = `Números atrapados: ${totalItems} / ${maxItems}`;
+      } else {
+        snake.pop();
+      }
+
+      ctx.fillStyle = "#ff69b4";
+      ctx.font = "bold 18px Comic Sans MS";
+      ctx.fillText(item.number, item.x + 5, item.y + 16);
+
+      snake.forEach((segment, index) => {
+        ctx.fillStyle = index === 0 ? "#ff85b3" : "#c5e4ff";
+        ctx.beginPath();
+        ctx.arc(segment.x + 10, segment.y + 10, 9, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = "#fff";
+        ctx.stroke();
+      });
+
+      for (let i = 4; i < snake.length; i++) {
+        if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) resetGame();
+      }
+
+      if (
+        snake[0].x < 0 ||
+        snake[0].x >= canvas.width ||
+        snake[0].y < 0 ||
+        snake[0].y >= canvas.height
+      ) {
+        resetGame();
+      }
+
+      if (totalItems >= maxItems) {
+        alert("¡Ganaste! 🎉 Atrapaste 50 números mágicos 💫");
+        resetGame();
+      }
+    }
+
+    function resetGame() {
+      snake = [{ x: 160, y: 160 }];
+      dx = grid;
+      dy = 0;
+      item = {
+        x: getRandomInt(0, 20) * grid,
+        y: getRandomInt(0, 20) * grid,
+        number: getRandomInt(0, 10),
+      };
+      totalItems = 0;
+      scoreElement.textContent = `Números atrapados: 0 / ${maxItems}`;
+    }
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft" && dx === 0) {
+        dx = -grid;
+        dy = 0;
+      } else if (e.key === "ArrowUp" && dy === 0) {
+        dy = -grid;
+        dx = 0;
+      } else if (e.key === "ArrowRight" && dx === 0) {
+        dx = grid;
+        dy = 0;
+      } else if (e.key === "ArrowDown" && dy === 0) {
+        dy = grid;
+        dx = 0;
+      }
+    });
+
+    requestAnimationFrame(gameLoop);
+  </script>
+</body>
+</html>

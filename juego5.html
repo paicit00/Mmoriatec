@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>🔢 Toca el Número Correcto</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive;
+     background:url(lol.jpg) ;
+      text-align: center;
+      color: #000000;
+      margin: 0;
+      padding: 0;
+    }
+    .number {
+      font-size: 2.5em;
+      background: #c5e4ff;
+      border-radius: 15px;
+      padding: 15px 25px;
+      margin: 10px;
+      display: inline-block;
+      cursor: pointer;
+      transition: transform 0.2s;
+      box-shadow: 0 2px 6px #ffc0cb;
+    }
+    .number:hover {
+      background: #ffe1f0;
+      transform: scale(1.1);
+    }
+    #mensaje {
+      font-size: 1.5em;
+      margin: 15px;
+    }
+    #target {
+      font-size: 2em;
+      margin-top: 10px;
+    }
+    .btn {
+      background: #ffccdd;
+      border: 2px solid #ffa7d1;
+      border-radius: 12px;
+      padding: 10px 20px;
+      font-size: 1em;
+      color: #ff1493;
+      margin: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔢 Toca el Número Correcto</h1>
+  <div id="target">Busca el número: </div>
+  <div id="numbers"></div>
+  <div id="mensaje"></div>
+  <button class="btn" onclick="reiniciarJuego()">🔁 Reiniciar</button>
+  <button class="btn" onclick="toggleMusic()">🎵 Música</button>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="Seis Pollos  El Número Seis  Aprende a Contar  Canción Infantil  JunyTony en español.mp4" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const numbersDiv = document.getElementById("numbers");
+    const targetDiv = document.getElementById("target");
+    const mensaje = document.getElementById("mensaje");
+    const music = document.getElementById("bg-music");
+    const bien = document.getElementById("bien");
+    const mal = document.getElementById("mal");
+
+    let meta = "", aciertos = 0, errores = 0;
+    const maxAciertos = 5;
+    const maxErrores = 3;
+
+    function iniciarRonda() {
+      numbersDiv.innerHTML = "";
+      meta = String(Math.floor(Math.random() * 10));
+      targetDiv.textContent = "Toca el número: " + meta;
+
+      const opciones = [meta];
+      while (opciones.length < 6) {
+        const n = String(Math.floor(Math.random() * 10));
+        if (!opciones.includes(n)) opciones.push(n);
+      }
+
+      opciones.sort(() => Math.random() - 0.5);
+      opciones.forEach(n => {
+        const span = document.createElement("span");
+        span.className = "number";
+        span.textContent = n;
+        span.onclick = () => verificar(n);
+        numbersDiv.appendChild(span);
+      });
+    }
+
+    function verificar(n) {
+      if (n === meta) {
+        aciertos++;
+        mensaje.textContent = "✅ ¡Muy bien!";
+        bien.play();
+      } else {
+        errores++;
+        mensaje.textContent = "❌ Intenta de nuevo.";
+        mal.play();
+      }
+
+      if (aciertos >= maxAciertos) {
+        mensaje.textContent = "🎉 ¡Ganaste!";
+        numbersDiv.innerHTML = "";
+        return;
+      } else if (errores >= maxErrores) {
+        mensaje.textContent = "😢 ¡Perdiste!";
+        numbersDiv.innerHTML = "";
+        return;
+      } else {
+        setTimeout(() => {
+          mensaje.textContent = "";
+          iniciarRonda();
+        }, 1000);
+      }
+    }
+
+    function reiniciarJuego() {
+      aciertos = 0;
+      errores = 0;
+      mensaje.textContent = "";
+      iniciarRonda();
+    }
+
+    function toggleMusic() {
+      if (music.paused) music.play();
+      else music.pause();
+    }
+
+    reiniciarJuego();
+  </script>
+</body>
+</html>

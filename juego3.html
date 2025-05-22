@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>🌸 Rompecabezas Mágico 🧩</title>
+  <style>
+    body {
+      background: repeating-linear-gradient(
+        45deg,
+        #ffccdd,
+        #ffccdd 20px,
+        #d0f0ff 20px,
+        #d0f0ff 40px
+      );
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      color: #ff69b4;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin: 20px 0 10px;
+      text-shadow: 2px 2px #fff0f5;
+    }
+
+    #puzzle {
+      width: 300px;
+      height: 300px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      border: 4px dashed #ffa7d1;
+      border-radius: 20px;
+      box-shadow: 0 0 15px #ffc0cb;
+      background-color: #fff0fa;
+      padding: 5px;
+    }
+
+    .tile {
+      width: 96px;
+      height: 96px;
+      margin: 2px;
+      background: #c5e4ff;
+      color: #ff69b4;
+      font-size: 2.2em;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+      transition: transform 0.1s;
+    }
+
+    .tile:active {
+      transform: scale(0.97);
+    }
+
+    .button-container {
+      margin: 20px;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #ffb6c1, #d0f0ff);
+      border: 2px solid #ffa7d1;
+      border-radius: 12px;
+      padding: 10px 20px;
+      font-size: 1em;
+      color: #ff1493;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      box-shadow: 0 3px 6px #fcb8e2;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #ffe1ec, #e0f7fa);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+  </style>
+</head>
+<body>
+  <h1>🧩 Rompecabezas Mágico 🌈</h1>
+
+  <div class="button-container">
+    <button class="btn" onclick="shuffle()">🔄 Reiniciar Puzzle</button>
+    <button class="btn" onclick="toggleMusic()">🎵 Pausar/Reproducir Música</button>
+  </div>
+
+  <div id="puzzle"></div>
+
+  <!-- 🎵 Música de fondo -->
+  <audio id="bg-music" autoplay loop>
+    <source src="Siete Duendecitos  Números  PINKFONG Canciones Infantiles.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const puzzle = document.getElementById("puzzle");
+    const music = document.getElementById("bg-music");
+    let tiles = [...Array(8).keys()].map(i => i + 1);
+    tiles.push(""); // espacio vacío
+    let shuffling = true;
+
+    function render() {
+      puzzle.innerHTML = "";
+      tiles.forEach((n, i) => {
+        const div = document.createElement("div");
+        div.className = "tile";
+        div.textContent = n;
+        if (n === "") {
+          div.style.background = "#fff0fa";
+          div.style.boxShadow = "none";
+          div.style.cursor = "default";
+        }
+        div.onclick = () => move(i);
+        puzzle.appendChild(div);
+      });
+    }
+
+    function move(i) {
+      const empty = tiles.indexOf("");
+      const neighbors = [];
+
+      if (i % 3 !== 0) neighbors.push(i - 1);
+      if (i % 3 !== 2) neighbors.push(i + 1);
+      if (i >= 3) neighbors.push(i - 3);
+      if (i < 6) neighbors.push(i + 3);
+
+      if (neighbors.includes(empty)) {
+        [tiles[i], tiles[empty]] = [tiles[empty], tiles[i]];
+        render();
+        if (!shuffling) checkWin();
+      }
+    }
+
+    function shuffle() {
+      shuffling = true;
+      for (let i = 0; i < 100; i++) {
+        move(Math.floor(Math.random() * 9));
+      }
+      shuffling = false;
+      render();
+    }
+
+    function checkWin() {
+      const expected = [...Array(8).keys()].map(i => i + 1).concat("");
+      const isWin = tiles.every((val, idx) => val === expected[idx]);
+      if (isWin) {
+        setTimeout(() => {
+          alert("¡Ganaste! 🎉 Puzzle completo 💖");
+        }, 100);
+      }
+    }
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+
+    shuffle();
+    render();
+  </script>
+</body>
+</html>
