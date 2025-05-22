@@ -1,0 +1,220 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Plataforma</title>
+
+  <!-- Font Awesome para íconos de redes -->
+  <link rel="stylesheet" href="/Paginas html y css (estilos de las paginas) min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+
+    header {
+      background-color: #afbeff;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 2rem 3rem;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #8789ff;
+    }
+
+    .redes-sociales {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .redes-sociales a {
+      color: white;
+      font-size: 1.4rem;
+      transition: color 0.3s;
+    }
+
+    .redes-sociales a:hover {
+      color: #ffeb3b;
+    }
+
+    main {
+      min-height: 100vh;
+      background: url(o.jpg) center/cover no-repeat, radial-gradient(circle, #fff 80%, #ffe4f1 100%);
+      background-attachment: fixed;
+      position: relative;
+      overflow: hidden;
+      padding: 3rem 1rem;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .titulo {
+      font-size: 2.8rem;
+      color: #d4cbff;
+      margin-bottom: 2rem;
+      text-shadow: 6px 3px #000000;
+    }
+
+    .personaje-central img {
+      max-width: 350px;
+      width: 100%;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .boton {
+      display: inline-block;
+      background-color: #dad734;
+      color: black;
+      padding: 1rem 2rem;
+      font-size: 1.3rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      box-shadow: 4px 4px #333;
+      transition: transform 0.2s, background-color 0.3s;
+      margin-top: 2rem;
+    }
+
+    .boton:hover {
+      transform: scale(1.05);
+      background-color: #bdd455;
+    }
+
+    footer {
+      background-color: #fcf04e;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #000;
+    }
+
+    .confeti {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .confeti span {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: transparent;
+      border-radius: 50%;
+      animation: flotar 10s linear infinite;
+    }
+
+    .confeti span::before {
+      content: "★";
+      font-size: 1.2rem;
+      color: #120727;
+    }
+
+    @keyframes flotar {
+      0% { transform: translateY(-50px) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .titulo {
+        font-size: 2rem;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .redes-sociales {
+        margin-top: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">PLATAFORMA EDUCATIVA</div>
+    <nav>
+      <ul>
+        <li><a href="calidad.html" target="_blank">NÚMEROS</a></li>
+        <li><a href="ejem.html" target="_blank">EJEMPLOS</a></li>
+        <li><a href="mina.html" target="_blank">ACTIVIDADES</a></li>
+        <li><a href="juegos.html" target="_blank">JUEGOS</a></li>
+      </ul>
+    </nav>
+    <div class="redes-sociales">
+      <a href="https://facebook.com/tuperfil" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com/extorcionnaddo" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://tiktok.com/@ser1zaw4" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="https://youtube.com/@tuperfil" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+  </header>
+
+  <main>
+    <div class="confeti">
+      <span style="left: 10%; animation-delay: 0s;"></span>
+      <span style="left: 25%; animation-delay: 2s;"></span>
+      <span style="left: 40%; animation-delay: 0s;"></span>
+      <span style="left: 60%; animation-delay: 1s;"></span>
+      <span style="left: 75%; animation-delay: 1s;"></span>
+      <span style="left: 90%; animation-delay: 1s;"></span>
+      <span style="left: 80%; animation-delay: 2s;"></span>
+      <span style="left: 45%; animation-delay: 1s;"></span>
+    </div>
+
+    <h1 class="titulo">PLATAFORMA EDUCATIVA PARA NIÑOS</h1>
+    <div class="personaje-central">
+      <img src="o.gif" alt="Personaje central" />
+    </div>
+    <a class="boton" href="calidad.html">¡Haz clic aquí para aprender!</a>
+  </main>
+
+  <footer>
+    © 2025 Plataforma educativa sobre números
+  </footer>
+</body>
+</html>
